@@ -39,7 +39,6 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 10px;
-            position: relative;
         }
 
         .discount-badge {
@@ -60,6 +59,18 @@
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .save-icon {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .save-icon:hover {
+            transform: scale(1.2);
         }
 
         .product-info {
@@ -88,13 +99,27 @@
         .rating {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-top: 5px;
             font-size: 0.9rem;
         }
 
-        .rating svg {
-            margin-left: 5px;
-            color: #ffc107;
+        .rating .stars {
+            display: flex;
+            align-items: center;
+        }
+
+        .stock-status {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .in-stock {
+            color: #28a745;
+        }
+
+        .out-of-stock {
+            color: #dc3545;
         }
 
         .store-section {
@@ -134,7 +159,6 @@
             position: relative;
         }
 
-        /* Initial Add Button */
         .add-button {
             display: flex;
             align-items: center;
@@ -151,7 +175,6 @@
         }
 
         .add-button:hover {
-            /* transform: scale(1.1); */
             background-color: #0056b3;
         }
 
@@ -181,7 +204,6 @@
         }
 
         .quantity-button:hover {
-            /* transform: scale(1.1); */
             background-color: #0056b3;
         }
 
@@ -200,147 +222,55 @@
             display: flex;
             opacity: 1;
         }
-
-        .row-cols-2 {
-            gap: 20px !important;
-        }
     </style>
 </head>
 
 <body>
-    <!-- Container -->
     <div class="container mt-5">
         <div class="row row-cols-2 row-cols-md-3 g-4">
             <!-- Product Card -->
-            <div class="col-12">
+            <div class="col">
                 <div class="store-card">
                     <!-- Product Section -->
                     <div class="product-section">
                         <span class="discount-badge">25% تخفیف</span>
                         <img src="https://via.placeholder.com/400x200" alt="عکس محصول" class="product-image">
-                        <div class="product-title">محصول 1</div>
+                        <div class="product-title">
+                            محصول 1
+                            <svg onclick="toggleSave(this)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bookmark save-icon">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
+                            </svg>
+                        </div>
                         <div class="product-info">محصولی با کیفیت و قیمت مناسب.</div>
                         <div class="product-price">
                             <span>120,000 تومان</span>
                             <del>150,000 تومان</del>
                         </div>
                         <div class="rating">
-                            <span id="stars">
-                                <!-- Dynamic Stars -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
+                            <div class="stars">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
-                                </svg>
-                            </span>
-                            85% رضایت
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
+                            </div>
+                            <span class="stock-status in-stock">موجود</span>
                         </div>
                     </div>
-                    <!-- Store Section -->
-                    <div class="store-section">
-                        <div class="store-info">
-                            <div class="store-image">
-                                <img src="https://via.placeholder.com/100" alt="عکس فروشگاه">
-                            </div>
-                            <div class="store-name">فروشگاه اول</div>
-                        </div>
-                        <div class="add-to-cart">
-                            <button class="add-button" onclick="activateQuantityControls(this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-button" onclick="decreaseQuantity(this)">-</button>
-                                <span class="quantity-count">1</span>
-                                <button class="quantity-button" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product Card -->
-            <div class="col-12">
-                <div class="store-card">
-                    <!-- Product Section -->
-                    <div class="product-section">
-                        <span class="discount-badge">25% تخفیف</span>
-                        <img src="https://via.placeholder.com/400x200" alt="عکس محصول" class="product-image">
-                        <div class="product-title">محصول 1</div>
-                        <div class="product-info">محصولی با کیفیت و قیمت مناسب.</div>
-                        <div class="product-price">
-                            <span>120,000 تومان</span>
-                            <del>150,000 تومان</del>
-                        </div>
-                        <div class="rating">
-                            <span id="stars">
-                                <!-- Dynamic Stars -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="#ffc107" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star"
-                                    width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffc107"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 17.75l-6.172 3.725l1.169-6.825l-4.972-4.85l6.874-.998l3.101-6.29l3.101 6.29l6.874 .998l-4.972 4.85l1.169 6.825z">
-                                    </path>
-                                </svg>
-                            </span>
-                            85% رضایت
-                        </div>
-                    </div>
                     <!-- Store Section -->
                     <div class="store-section">
                         <div class="store-info">
@@ -360,11 +290,17 @@
                     </div>
                 </div>
             </div>
-            <!-- Repeat Product Cards as needed -->
         </div>
     </div>
 
     <script>
+        function toggleSave(icon) {
+            icon.setAttribute(
+                "fill",
+                icon.getAttribute("fill") === "none" ? "currentColor" : "none"
+            );
+        }
+
         function activateQuantityControls(button) {
             const container = button.parentElement;
             container.classList.add('active');
