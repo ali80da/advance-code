@@ -15,7 +15,7 @@
         .store-card {
             background-color: #fff;
             border: 1px solid #e3e6eb;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             transition: box-shadow 0.3s ease;
             display: flex;
@@ -28,7 +28,7 @@
         }
 
         .product-section {
-            padding: 15px;
+            padding: 8px;
             border-bottom: 1px solid #e3e6eb;
             position: relative;
         }
@@ -43,8 +43,8 @@
 
         .discount-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background-color: rgba(255, 77, 79, 0.8);
             color: #fff;
             padding: 5px 10px;
@@ -66,6 +66,7 @@
 
         .save-icon {
             cursor: pointer;
+            /* font-size: 1.5rem !important; */
             transition: transform 0.3s ease;
         }
 
@@ -87,7 +88,7 @@
         }
 
         .product-price span {
-            color: #3538dc;
+            color: #3248c7;
             font-weight: bold;
         }
 
@@ -106,6 +107,7 @@
 
         .rating .stars {
             display: flex;
+            color: #e9cc2a;
             align-items: center;
         }
 
@@ -140,7 +142,7 @@
             border-radius: 50%;
             overflow: hidden;
             margin-left: 15px;
-            border: 2px solid #007bff;
+            border: 2px solid #3248c7;
         }
 
         .store-image img {
@@ -166,7 +168,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #007bff;
+            background-color: #3248c7;
             color: #fff;
             font-size: 1.5rem;
             border: none;
@@ -175,7 +177,25 @@
         }
 
         .add-button:hover {
-            background-color: #0056b3;
+            background-color: #3248c7;
+        }
+
+        .add-button.clicked {
+            animation: pulse 0.3s ease-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .quantity-controls {
@@ -184,7 +204,9 @@
             gap: 5px;
             opacity: 0;
             border: 1px solid #d1d1d1;
-            border-radius: 18px;
+            border-radius: 20px;
+            background: #ddd;
+            padding: 3px;
             transition: opacity 0.3s ease;
         }
 
@@ -196,7 +218,7 @@
             height: 35px;
             border: none;
             border-radius: 50%;
-            background-color: #252ea3;
+            background-color: #3248c7;
             color: #fff;
             font-size: 1.2rem;
             cursor: pointer;
@@ -204,7 +226,7 @@
         }
 
         .quantity-button:hover {
-            background-color: #0056b3;
+            background-color: #3248c7;
         }
 
         .quantity-count {
@@ -229,43 +251,153 @@
     <div class="container mt-5">
         <div class="row row-cols-2 row-cols-md-3 g-4">
             <!-- Product Card -->
-            <div class="col">
+            <div class="col-12">
                 <div class="store-card">
                     <!-- Product Section -->
                     <div class="product-section">
                         <span class="discount-badge">25% تخفیف</span>
                         <img src="https://via.placeholder.com/400x200" alt="عکس محصول" class="product-image">
                         <div class="product-title">
-                            محصول 1
-                            <svg onclick="toggleSave(this)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bookmark save-icon">
+                            محصول
+                            شماره یک
+                            <svg onclick="toggleSave(this)" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-bookmark save-icon">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
                             </svg>
                         </div>
-                        <div class="product-info">محصولی با کیفیت و قیمت مناسب.</div>
+                        <div class="product-info">
+                            محصولی با کیفیت و قیمت مناسب
+                            برای استفاده در گوشی های همراه
+                            .
+                        </div>
                         <div class="product-price">
                             <span>120,000 تومان</span>
                             <del>150,000 تومان</del>
                         </div>
                         <div class="rating">
                             <div class="stars">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                 </svg>
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                                </svg>
+                            </div>
+                            <span class="stock-status in-stock">موجود</span>
+                        </div>
+                    </div>
+
+                    <!-- Store Section -->
+                    <div class="store-section">
+                        <div class="store-info">
+                            <div class="store-image">
+                                <img src="https://via.placeholder.com/100" alt="عکس فروشگاه">
+                            </div>
+                            <div class="store-name">فروشگاه اول</div>
+                        </div>
+                        <div class="add-to-cart">
+                            <button class="add-button" onclick="activateQuantityControls(this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-button" onclick="decreaseQuantity(this)">-</button>
+                                <span class="quantity-count">1</span>
+                                <button class="quantity-button" onclick="increaseQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card -->
+            <div class="col-12">
+                <div class="store-card">
+                    <!-- Product Section -->
+                    <div class="product-section">
+                        <span class="discount-badge">25% تخفیف</span>
+                        <img src="https://via.placeholder.com/400x200" alt="عکس محصول" class="product-image">
+                        <div class="product-title mb-3">
+                            محصول
+                            شماره یک
+                            <svg onclick="toggleSave(this)" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-bookmark save-icon">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
+                            </svg>
+
+                        </div>
+                        <!-- <div class="product-info">
+                            محصولی با کیفیت و قیمت مناسب
+                            برای استفاده در گوشی های همراه
+                            .
+                        </div> -->
+                        <div class="product-price">
+                            <span>120,000 تومان</span>
+                            <del>150,000 تومان</del>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                                </svg>
                             </div>
                             <span class="stock-status in-stock">موجود</span>
                         </div>
@@ -294,6 +426,7 @@
     </div>
 
     <script>
+
         function toggleSave(icon) {
             icon.setAttribute(
                 "fill",
@@ -302,6 +435,14 @@
         }
 
         function activateQuantityControls(button) {
+            // اضافه کردن کلاس برای انیمیشن
+            button.classList.add("clicked");
+
+            // حذف کلاس بعد از اتمام انیمیشن
+            setTimeout(() => {
+                button.classList.remove("clicked");
+            }, 300);
+
             const container = button.parentElement;
             container.classList.add('active');
         }
