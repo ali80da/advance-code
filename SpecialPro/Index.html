@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="صفحه نمایش محصولات ویژه با طراحی زیبا، افکت‌های جذاب و قابلیت‌های کاربردی.">
+    <meta name="keywords" content="محصولات ویژه, خرید آنلاین, افکت های CSS, انیمیشن, طراحی UI/UX">
+    <meta name="author" content="Interactive Web Code">
+    <title>محصولات ویژه</title>
+
+    <!-- Tabler CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Vazir', sans-serif;
+            background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3b5998;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .search-bar {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 70%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .notification-bar {
+            background-color: #ff5722;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .category-menu {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .category-menu button {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .category-menu button:hover {
+            background-color: #2e467a;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ddd;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .product-box {
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-box .details {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .details h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .details p {
+            margin: 10px 0;
+            color: #3b5998;
+            font-size: 1.2rem;
+        }
+
+        .details .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .details .rating {
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            display: inline-block;
+            background: #3b5998;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #2e467a;
+        }
+
+        footer {
+            background-color: #3b5998;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>محصولات ویژه ما</h1>
+    </header>
+
+    <div class="notification-bar">
+        پیشنهاد ویژه: تخفیف ۲۰٪ برای خریدهای بالای ۵۰۰,۰۰۰ تومان!
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="جستجوی محصولات...">
+        <button>جستجو</button>
+    </div>
+
+    <div class="category-menu">
+        <button>دسته‌بندی ۱</button>
+        <button>دسته‌بندی ۲</button>
+        <button>دسته‌بندی ۳</button>
+        <button>دسته‌بندی ۴</button>
+    </div>
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://via.placeholder.com/1920x400?text=بنر+1" alt="بنر 1"></div>
+            <div class="swiper-slide"><img src="https://via.placeholder.com/1920x400?text=بنر+2" alt="بنر 2"></div>
+            <div class="swiper-slide"><img src="https://via.placeholder.com/1920x400?text=بنر+3" alt="بنر 3"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <main>
+        <div class="product-container">
+            <div class="product-box">
+                <img src="https://via.placeholder.com/300x200" alt="محصول ۱">
+                <div class="details">
+                    <h2>محصول شماره ۱</h2>
+                    <p>۵۰۰,۰۰۰ تومان</p>
+                    <p class="description">این محصول دارای کیفیت عالی و طراحی زیبا می‌باشد.</p>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <a href="#" class="add-to-cart">افزودن به سبد خرید</a>
+                </div>
+            </div>
+            <div class="product-box">
+                <img src="https://via.placeholder.com/300x200" alt="محصول ۲">
+                <div class="details">
+                    <h2>محصول شماره ۲</h2>
+                    <p>۷۰۰,۰۰۰ تومان</p>
+                    <p class="description">مناسب برای استفاده روزانه و هدیه دادن.</p>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <a href="#" class="add-to-cart">افزودن به سبد خرید</a>
+                </div>
+            </div>
+            <div class="product-box">
+                <img src="https://via.placeholder.com/300x200" alt="محصول ۳">
+                <div class="details">
+                    <h2>محصول شماره ۳</h2>
+                    <p>۸۵۰,۰۰۰ تومان</p>
+                    <p class="description">این محصول انتخابی عالی برای افراد خاص پسند است.</p>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <a href="#" class="add-to-cart">افزودن به سبد خرید</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; ۲۰۲۴ تمامی حقوق محفوظ است | طراحی شده توسط Interactive Web Code</p>
+    </footer>
+
+    <!-- Tabler JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+
+</html>
