@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="صفحه تأیید کد TOTP با طراحی مدرن و بهینه برای تجربه کاربری عالی">
+    <meta name="keywords" content="TOTP, تأیید دو مرحله‌ای, امنیت, طراحی وب, تجربه کاربری">
+    <meta name="author" content="Interactive Web Code">
+    <meta name="robots" content="index, follow">
+    <title>تأیید کد TOTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Vazir", sans-serif;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            direction: rtl;
+        }
+
+        .card {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .first-load {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .card.shake {
+            animation: shake 0.5s;
+        }
+
+        .card-header {
+            background: linear-gradient(45deg, #8e44ad, #3498db);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .input-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            direction: ltr;
+        }
+
+        .input-box input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.3s ease;
+            transform-origin: left;
+        }
+
+        .btn {
+            background: transparent;
+            color: #3498db;
+            width: 100%;
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 10px 0;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn.loading {
+            position: relative;
+            pointer-events: none;
+            color: transparent;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            width: 20px;
+            height: 20px;
+            border: 3px solid #3498db;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(0.5) rotate(360deg);
+            }
+        }
+
+        .resend-button {
+            display: none;
+            margin-top: 10px;
+            background: none;
+            color: #3498db;
+            text-decoration: underline;
+            border: none;
+            cursor: pointer;
+        }
+
+        .resend-button:hover {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+
+        .error-alert {
+            background-color: #f8d7da;
+            color: #842029;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card first-load" id="main-card">
+        <div class="card-header">
+            <h1>تأیید کد TOTP</h1>
+            <p>یک راه امن برای تأیید دسترسی شما.</p>
+        </div>
+        <div class="card-body">
+            <p class="user-guidance" id="user-guidance">لطفاً کد ۶ رقمی ارسال‌شده را وارد کنید.</p>
+            <form id="totp-form" action="/verify" method="POST">
+                <div class="input-box">
+                    <input type="text" maxlength="1" class="totp-input" required autofocus>
+                    <input type="text" maxlength="1" class="totp-input" required>
+                    <input type="text" maxlength="1" class="totp-input" required>
+                    <input type="text" maxlength="1" class="totp-input" required>
+                    <input type="text" maxlength="1" class="totp-input" required>
+                    <input type="text" maxlength="1" class="totp-input" required>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="error-alert" id="error-alert">خطا: فقط اعداد مجاز هستند!</div>
+                <div class="mt-3">
+                    <button type="submit" class="btn" id="submit-btn">ارسال</button>
+                </div>
+                <div class="resend-timer" id="resend-timer">ارسال مجدد کد پس از <span id="timer">60</span> ثانیه</div>
+                <button type="button" class="resend-button" id="resend-button">ارسال مجدد کد</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        const inputs = document.querySelectorAll('.totp-input');
+        const resendTimer = document.getElementById('resend-timer');
+        const resendButton = document.getElementById('resend-button');
+        const timerSpan = document.getElementById('timer');
+        const userGuidance = document.getElementById('user-guidance');
+        const mainCard = document.getElementById('main-card');
+        const progress = document.getElementById('progress');
+        const submitButton = document.getElementById('submit-btn');
+        const form = document.getElementById('totp-form');
+
+        let countdown;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                mainCard.classList.remove('first-load');
+            }, 1000);
+        });
+
+        function startResendTimer() {
+            let timeLeft = 60;
+            resendButton.style.display = 'none';
+            resendTimer.style.display = 'block';
+
+            countdown = setInterval(() => {
+                timeLeft -= 1;
+                timerSpan.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    resendTimer.style.display = 'none';
+                    resendButton.style.display = 'inline';
+                }
+            }, 1000);
+        }
+
+        startResendTimer();
+
+        resendButton.addEventListener('click', () => {
+            resendButton.style.display = 'none';
+            startResendTimer();
+        });
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                if (!/^[0-9]$/.test(input.value)) {
+                    input.value = '';
+                    const errorAlert = document.getElementById('error-alert');
+                    errorAlert.style.display = 'block';
+                    userGuidance.textContent = 'لطفاً فقط اعداد وارد کنید.';
+
+                    mainCard.classList.add('shake');
+                    setTimeout(() => {
+                        mainCard.classList.remove('shake');
+                    }, 500);
+
+                    setTimeout(() => {
+                        errorAlert.style.display = 'none';
+                    }, 3000);
+                } else {
+                    userGuidance.textContent = 'لطفاً کد ۶ رقمی ارسال‌شده را وارد کنید.';
+                    const filledInputs = Array.from(inputs).filter(i => i.value).length;
+                    progress.style.width = `${(filledInputs / inputs.length) * 100}%`;
+
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else if (filledInputs === inputs.length) {
+                        submitButton.classList.add('loading');
+                        setTimeout(() => {
+                            submitButton.classList.remove('loading');
+                            form.submit();
+                        }, 2000);
+                    }
+                }
+            });
+
+            input.addEventListener('paste', (event) => {
+                const pasteData = event.clipboardData.getData('text');
+                if (/^[0-9]{6}$/.test(pasteData)) {
+                    inputs.forEach((input, idx) => {
+                        input.value = pasteData[idx] || '';
+                    });
+                    submitButton.classList.add('loading');
+                    setTimeout(() => {
+                        submitButton.classList.remove('loading');
+                        form.submit();
+                    }, 2000);
+                }
+            });
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Backspace' && input.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
