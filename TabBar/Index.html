@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="صفحه نمایش تب بار با ۵ گزینه در پایین صفحه برای موبایل و تبلت با استفاده از آیکون">
+    <meta name="keywords" content="تب بار, طراحی UI, موبایل, تبلت, آیکون, تب‌های مختلف">
+    <meta name="author" content="Interactive Web Code">
+    <title>صفحه نمایش تب بار در پایین صفحه</title>
+
+    <!-- Tabler CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Vazir', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            padding-bottom: 60px; /* for better view when tabs are fixed at bottom */
+        }
+
+        header {
+            background-color: #3b5998;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .tab-container {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            border-top: 2px solid #ddd;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            background-color: #f4f4f4;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab:hover {
+            background-color: #e0e0e0;
+        }
+
+        .tab.active {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            background-color: #3b5998;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* Media Queries for responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .tabs {
+                flex-direction: row;
+                padding: 0;
+                margin: 0;
+            }
+
+            .tab {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .tab-container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .tabs {
+                flex-direction: row;
+                justify-content: space-evenly;
+                height: 100%;
+            }
+
+            .tab-container {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>صفحه نمایش تب بار</h1>
+    </header>
+
+    <div class="tab-container">
+        <div class="tabs">
+            <div class="tab active" data-tab="tab1">
+                <i class="fas fa-home"></i>
+                <div>خانه</div>
+            </div>
+            <div class="tab" data-tab="tab2">
+                <i class="fas fa-search"></i>
+                <div>جستجو</div>
+            </div>
+            <div class="tab" data-tab="tab3">
+                <i class="fas fa-bell"></i>
+                <div>اطلاعیه‌ها</div>
+            </div>
+            <div class="tab" data-tab="tab4">
+                <i class="fas fa-cog"></i>
+                <div>تنظیمات</div>
+            </div>
+            <div class="tab" data-tab="tab5">
+                <i class="fas fa-user"></i>
+                <div>پروفایل</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content active" id="tab1">
+        <h2>محتوای خانه</h2>
+        <p>این بخش مربوط به محتوای خانه است.</p>
+    </div>
+    <div class="tab-content" id="tab2">
+        <h2>محتوای جستجو</h2>
+        <p>این بخش مربوط به محتوای جستجو است.</p>
+    </div>
+    <div class="tab-content" id="tab3">
+        <h2>محتوای اطلاعیه‌ها</h2>
+        <p>این بخش مربوط به محتوای اطلاعیه‌ها است.</p>
+    </div>
+    <div class="tab-content" id="tab4">
+        <h2>محتوای تنظیمات</h2>
+        <p>این بخش مربوط به محتوای تنظیمات است.</p>
+    </div>
+    <div class="tab-content" id="tab5">
+        <h2>محتوای پروفایل</h2>
+        <p>این بخش مربوط به محتوای پروفایل است.</p>
+    </div>
+
+    <footer>
+        <p>&copy; ۲۰۲۴ تمامی حقوق محفوظ است</p>
+    </footer>
+
+    <!-- Tabler JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Get all tabs and tab content
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Add click event listener to each tab
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
