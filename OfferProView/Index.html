@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="محصول ویژه با تخفیف و طراحی حرفه‌ای">
+  <title>فروش ویژه محصولات تخفیف‌دار</title>
+  
+  <!-- Tabler CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/core@2.0.0-beta.4/dist/css/tabler.min.css" rel="stylesheet">
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  <!-- AOS Animation CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <style>
+    body {
+      font-family: 'Vazir', sans-serif;
+      direction: rtl;
+      background-color: #f9fafb;
+      margin: 0;
+    }
+
+    /* هدر */
+    header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    /* اسلایدر */
+    .swiper {
+      margin: 30px auto;
+      width: 90%;
+      border-radius: 10px;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    /* شبکه محصولات */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .product-card p {
+      color: #666;
+    }
+
+    .product-card .price {
+      color: #28a745;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .btn-buy {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-buy:hover {
+      background: #0056b3;
+    }
+
+    /* نظرات */
+    .reviews {
+      margin: 40px auto;
+      max-width: 800px;
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .review {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- هدر -->
+  <header>
+    <h1>فروش ویژه محصولات تخفیف‌دار</h1>
+    <p>بهترین فرصت‌ها را از دست ندهید!</p>
+  </header>
+
+  <!-- اسلایدر -->
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="https://via.placeholder.com/800x300?text=محصول+ویژه+1" alt="محصول ویژه 1"></div>
+      <div class="swiper-slide"><img src="https://via.placeholder.com/800x300?text=محصول+ویژه+2" alt="محصول ویژه 2"></div>
+    </div>
+  </div>
+
+  <!-- شبکه محصولات -->
+  <div class="product-grid">
+    <div class="product-card" data-aos="fade-up">
+      <img src="https://via.placeholder.com/400x200" alt="لپ‌تاپ حرفه‌ای">
+      <h3>لپ‌تاپ حرفه‌ای X1</h3>
+      <p>پردازنده نسل 12، رم 16 گیگ</p>
+      <p class="price">25,000,000 تومان <span style="text-decoration: line-through; color: #999;">30,000,000</span></p>
+      <a href="#" class="btn-buy">افزودن به سبد خرید</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://via.placeholder.com/400x200" alt="گوشی هوشمند Y3">
+      <h3>گوشی هوشمند Y3</h3>
+      <p>دوربین 108 مگاپیکسل، باتری 5000mAh</p>
+      <p class="price">12,500,000 تومان <span style="text-decoration: line-through; color: #999;">15,000,000</span></p>
+      <a href="#" class="btn-buy">افزودن به سبد خرید</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://via.placeholder.com/400x200" alt="هدفون بلوتوث Z5">
+      <h3>هدفون بلوتوث Z5</h3>
+      <p>کیفیت صدای عالی، نویز کنسلینگ</p>
+      <p class="price">1,500,000 تومان <span style="text-decoration: line-through; color: #999;">2,000,000</span></p>
+      <a href="#" class="btn-buy">افزودن به سبد خرید</a>
+    </div>
+  </div>
+
+  <!-- نظرات مشتریان -->
+  <div class="reviews" data-aos="fade-up">
+    <h3>نظرات مشتریان</h3>
+    <div class="review">"کیفیت محصول عالی بود، کاملا راضی هستم!"</div>
+    <div class="review">"ارسال سریع و قیمت مناسب، حتما پیشنهاد می‌کنم."</div>
+  </div>
+
+  <!-- اسکریپت‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+    });
+  </script>
+</body>
+</html>
